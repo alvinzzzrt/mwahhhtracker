@@ -2981,6 +2981,13 @@ const SK_DEFAULT_STEPS_NIGHT = [
 let skWeekOffset = 0;
 let skTimeMode = 'day'; // 'day' | 'night'
 
+// Clear old demo skincare data if version not set
+if (!data.skDataVersion || data.skDataVersion < 2) {
+  data.skChecked = {};
+  data.skProducts = {};
+  data.skDataVersion = 2;
+  persist();
+}
 if (!data.skChecked) data.skChecked = {};
 
 
@@ -3517,6 +3524,13 @@ let calSelectedDate = null; // 'YYYY-MM-DD'
 if (!data.calTicked) data.calTicked = [];
 if (!data.calNotes) data.calNotes = {};
 if (!data.calNoteColors) data.calNoteColors = {};
+// Clear old demo skincare data if version not set
+if (!data.skDataVersion || data.skDataVersion < 2) {
+  data.skChecked = {};
+  data.skProducts = {};
+  data.skDataVersion = 2;
+  persist();
+}
 if (!data.skChecked) data.skChecked = {};
 
 
@@ -4025,6 +4039,13 @@ setInterval(() => {
 if (!data.calTicked) data.calTicked = [];
 if (!data.calNotes) data.calNotes = {};
 if (!data.calNoteColors) data.calNoteColors = {};
+// Clear old demo skincare data if version not set
+if (!data.skDataVersion || data.skDataVersion < 2) {
+  data.skChecked = {};
+  data.skProducts = {};
+  data.skDataVersion = 2;
+  persist();
+}
 if (!data.skChecked) data.skChecked = {};
 
 
