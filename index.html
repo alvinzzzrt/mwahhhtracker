@@ -1438,8 +1438,6 @@ body::before {
         <button onclick="openVisibilityDrawer()" title="Show / Hide Sections" style="width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all 0.2s;flex-shrink:0;">
           👁
         </button>
-        <button onclick="appZoomOut()" title="Zoom Out" style="width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.2s;flex-shrink:0;">−</button>
-        <button onclick="appZoomIn()" title="Zoom In" style="width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.2s;flex-shrink:0;">+</button>
       </div>
     </div>
   </div>
@@ -2985,23 +2983,7 @@ let skTimeMode = 'day'; // 'day' | 'night'
 
 if (!data.skChecked) data.skChecked = {};
 
-// Seed demo highlights on Mon + Wed of current week so user can see them
-(function seedDemoHighlights() {
-  const ist = (function(){ const n=new Date(); const utc=n.getTime()+n.getTimezoneOffset()*60000; return new Date(utc+5.5*3600000); })();
-  const day = ist.getDay();
-  const monday = new Date(ist);
-  monday.setDate(ist.getDate() - ((day + 6) % 7));
-  function dk(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-  const mon = new Date(monday); // Monday
-  const wed = new Date(monday); wed.setDate(monday.getDate()+2); // Wednesday
-  const monKey = dk(mon); const wedKey = dk(wed);
-  ['facewash','serum','moisturizer'].forEach(sid => {
-    const mk = 'day|'+monKey+'|'+sid;
-    const wk = 'day|'+wedKey+'|'+sid;
-    if (!data.skChecked[mk]) data.skChecked[mk] = true;
-    if (!data.skChecked[wk]) data.skChecked[wk] = true;
-  });
-})();
+
 if (!data.skProducts) data.skProducts = {};
 if (!data.medicines) data.medicines = [{id:"med_para",name:"Paracetamol",dose:"500mg",time:""},{id:"med_syrup",name:"Syrup",dose:"1 tsp",time:""}];
 if (!data.medTaken) data.medTaken = {};
@@ -3537,23 +3519,7 @@ if (!data.calNotes) data.calNotes = {};
 if (!data.calNoteColors) data.calNoteColors = {};
 if (!data.skChecked) data.skChecked = {};
 
-// Seed demo highlights on Mon + Wed of current week so user can see them
-(function seedDemoHighlights() {
-  const ist = (function(){ const n=new Date(); const utc=n.getTime()+n.getTimezoneOffset()*60000; return new Date(utc+5.5*3600000); })();
-  const day = ist.getDay();
-  const monday = new Date(ist);
-  monday.setDate(ist.getDate() - ((day + 6) % 7));
-  function dk(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-  const mon = new Date(monday); // Monday
-  const wed = new Date(monday); wed.setDate(monday.getDate()+2); // Wednesday
-  const monKey = dk(mon); const wedKey = dk(wed);
-  ['facewash','serum','moisturizer'].forEach(sid => {
-    const mk = 'day|'+monKey+'|'+sid;
-    const wk = 'day|'+wedKey+'|'+sid;
-    if (!data.skChecked[mk]) data.skChecked[mk] = true;
-    if (!data.skChecked[wk]) data.skChecked[wk] = true;
-  });
-})();
+
 if (!data.skProducts) data.skProducts = {};
 if (!data.medicines) data.medicines = [{id:"med_para",name:"Paracetamol",dose:"500mg",time:""},{id:"med_syrup",name:"Syrup",dose:"1 tsp",time:""}];
 if (!data.medTaken) data.medTaken = {};
@@ -3998,17 +3964,7 @@ function stopMotivationClouds() {
 }
 
 
-// ── App zoom (font size only) ──
-let appZoom = parseFloat(localStorage.getItem('ff-zoom') || '1');
-const BASE_FONT = 14; // base px
-function applyZoom() {
-  const size = Math.round(BASE_FONT * appZoom);
-  document.documentElement.style.fontSize = size + 'px';
-  localStorage.setItem('ff-zoom', appZoom);
-}
-function appZoomIn()  { appZoom = Math.min(1.5, +(appZoom + 0.1).toFixed(1)); applyZoom(); }
-function appZoomOut() { appZoom = Math.max(0.7, +(appZoom - 0.1).toFixed(1)); applyZoom(); }
-applyZoom();
+
 
 function openThemeDrawer() {
   renderThemeGrid();
@@ -4071,23 +4027,7 @@ if (!data.calNotes) data.calNotes = {};
 if (!data.calNoteColors) data.calNoteColors = {};
 if (!data.skChecked) data.skChecked = {};
 
-// Seed demo highlights on Mon + Wed of current week so user can see them
-(function seedDemoHighlights() {
-  const ist = (function(){ const n=new Date(); const utc=n.getTime()+n.getTimezoneOffset()*60000; return new Date(utc+5.5*3600000); })();
-  const day = ist.getDay();
-  const monday = new Date(ist);
-  monday.setDate(ist.getDate() - ((day + 6) % 7));
-  function dk(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
-  const mon = new Date(monday); // Monday
-  const wed = new Date(monday); wed.setDate(monday.getDate()+2); // Wednesday
-  const monKey = dk(mon); const wedKey = dk(wed);
-  ['facewash','serum','moisturizer'].forEach(sid => {
-    const mk = 'day|'+monKey+'|'+sid;
-    const wk = 'day|'+wedKey+'|'+sid;
-    if (!data.skChecked[mk]) data.skChecked[mk] = true;
-    if (!data.skChecked[wk]) data.skChecked[wk] = true;
-  });
-})();
+
 if (!data.skProducts) data.skProducts = {};
 if (!data.medicines) data.medicines = [{id:"med_para",name:"Paracetamol",dose:"500mg",time:""},{id:"med_syrup",name:"Syrup",dose:"1 tsp",time:""}];
 if (!data.medTaken) data.medTaken = {};
